@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumpleaños!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #fce7f3; 
+            overflow: hidden; 
+        }
+        .cursive { font-family: 'Caveat', cursive; }
+        .screen { 
+            display: none; 
+            opacity: 0; 
+            transition: opacity 0.5s ease-in-out; 
+            height: 100vh;
+            width: 100vw;
+        }
+        .screen.active { 
+            display: flex; 
+            opacity: 1; 
+            animation: fadeIn 0.8s forwards; 
+        }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(15px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        .polaroid { 
+            background: white; 
+            padding: 12px 12px 24px 12px; 
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); 
+            transform: rotate(-2deg); 
+            border-radius: 4px;
+        }
+        .heart-beat { animation: beat 1.2s infinite; }
+        @keyframes beat { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.15); } 
+        }
+        .collage-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px; 
+        }
+        .collage-grid img { 
+            width: 100%; 
+            height: 130px; 
+            object-fit: cover; 
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .collage-grid img:nth-child(3) {
+            grid-column: span 2;
+            height: 160px;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center text-gray-800">
+
+    <!-- Pantalla 1: Inicio / Abrir -->
+    <div id="screen-1" class="screen active flex-col items-center justify-center">
+        <button onclick="nextScreen(2)" class="focus:outline-none heart-beat transition-transform hover:scale-110 relative">
+            <svg class="w-36 h-36 text-rose-500 drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+            <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white font-bold cursive text-3xl pointer-events-none drop-shadow-md">¡Ábreme!</span>
+        </button>
+    </div>
+
+    <!-- Pantalla 2: Polaroid de Cumpleaños -->
+    <div id="screen-2" class="screen flex-col items-center justify-center p-4">
+        <div class="polaroid mb-8 max-w-xs w-full">
+            <!-- Imagen Principal cargada localmente -->
+            <img src="IMG-20260101-WA0026.jpg" alt="Nuestra Foto" class="w-full h-72 object-cover mb-3 border border-gray-100 rounded-sm">
+            <div class="text-center text-gray-400 text-xs font-semibold tracking-widest mb-2 uppercase">24 de Septiembre</div>
+            <h1 class="text-4xl cursive text-center text-rose-600 font-bold leading-none">¡Feliz Cumpleaños Gaby!</h1>
+        </div>
+        <button onclick="nextScreen(3)" class="text-rose-500 underline text-lg font-medium hover:text-rose-700 transition">¡Por favor haz clic aquí!</button>
+    </div>
+
+    <!-- Pantalla 3: Calendario -->
+    <div id="screen-3" class="screen flex-col items-center justify-center p-6">
+        <div class="bg-white/70 rounded-3xl shadow-xl backdrop-blur-md p-6 max-w-sm w-full text-center">
+            <h2 class="text-sm font-bold text-gray-400 mb-1 tracking-widest uppercase">Hoy es tu día especial</h2>
+            <h3 class="text-4xl cursive text-rose-600 mb-6">Septiembre 2026</h3>
+            
+            <div class="grid grid-cols-7 gap-y-3 gap-x-2 text-center text-sm font-medium text-gray-600 w-full mb-8">
+                <div class="text-rose-400">D</div><div>L</div><div>M</div><div>M</div><div>J</div><div>V</div><div class="text-rose-400">S</div>
+                <div></div><div></div>
+                <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+                <div>6</div><div>7</div><div>8</div><div>9</div><div>10</div><div>11</div><div>12</div>
+                <div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div>
+                <div>20</div><div>21</div><div>22</div><div>23</div>
+                
+                <div class="relative flex justify-center items-center">
+                    <span class="absolute w-8 h-8 bg-rose-500 text-white rounded-full flex items-center justify-center heart-beat shadow-md">24</span>
+                </div>
+                
+                <div>25</div><div>26</div>
+                <div>27</div><div>28</div><div>29</div><div>30</div>
+            </div>
+            
+            <button onclick="nextScreen(4)" class="px-8 py-3 bg-rose-500 text-white rounded-full font-semibold hover:bg-rose-600 transition shadow-lg w-full">Continuar ❤️</button>
+        </div>
+    </div>
+
+    <!-- Pantalla 4: Menú de Regalos -->
+    <div id="screen-4" class="screen flex-col items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-3xl shadow-xl w-full max-w-sm text-center">
+            <h2 class="text-3xl cursive text-rose-600 mb-8 font-bold">¡Estos son regalitos especiales para ti!</h2>
+            <div class="flex justify-around items-center">
+                <button onclick="showGift('message')" class="flex flex-col items-center group transition">
+                    <div class="w-16 h-16 bg-rose-50 rounded-2xl flex items-center justify-center mb-2 group-hover:-translate-y-2 group-hover:shadow-md transition-all">
+                        <span class="text-3xl">💌</span>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-500">Mensaje</span>
+                </button>
+                <button onclick="showGift('photos')" class="flex flex-col items-center group transition">
+                    <div class="w-16 h-16 bg-rose-50 rounded-2xl flex items-center justify-center mb-2 group-hover:-translate-y-2 group-hover:shadow-md transition-all">
+                        <span class="text-3xl">📸</span>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-500">Fotos</span>
+                </button>
+                <button onclick="showGift('wish')" class="flex flex-col items-center group transition">
+                    <div class="w-16 h-16 bg-rose-50 rounded-2xl flex items-center justify-center mb-2 group-hover:-translate-y-2 group-hover:shadow-md transition-all">
+                        <span class="text-3xl">✨</span>
+                    </div>
+                    <span class="text-xs font-semibold text-gray-500">Deseo</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla 5: Fotos (Collage) -->
+    <div id="screen-photos" class="screen flex-col items-center justify-center p-4">
+        <div class="bg-white p-5 rounded-3xl shadow-xl w-full max-w-sm max-h-[85vh] overflow-y-auto">
+            <h2 class="text-3xl cursive text-rose-600 text-center mb-5 font-bold">Un montón de amor</h2>
+            <div class="collage-grid mb-5">
+                <!-- Imágenes cargadas localmente -->
+                <img src="IMG-20250825-WA0136.jpg" alt="Foto 1">
+                <img src="IMG-20250709-WA0179.jpg" alt="Foto 2">
+                <img src="IMG-20260101-WA0021.jpg" alt="Foto 3">
+                <img src="IMG-20250709-WA0181.jpg" alt="Foto 4">
+                <img src="IMG-20250709-WA0172.jpg" alt="Foto 5">
+            </div>
+            <p class="text-center text-xs text-gray-500 mb-5 font-medium px-4">¡Deseo que tengas un día lleno de risas, felicidad y momentos inolvidables!</p>
+            <div class="text-center">
+                <button onclick="nextScreen(4)" class="text-rose-500 underline font-semibold text-sm">Volver a los Regalos</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla 6: Deseo -->
+    <div id="screen-wish" class="screen flex-col items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-3xl shadow-xl w-full max-w-sm text-center">
+            <div class="text-4xl mb-3">✨</div>
+            <h2 class="text-2xl font-bold text-rose-800 mb-2">Pide un Deseo</h2>
+            <p class="text-xs text-gray-500 mb-6">Escribe tu deseo de cumpleaños aquí abajo</p>
+            
+            <div class="flex flex-col gap-4 mb-6">
+                <textarea id="wish-input" rows="3" class="w-full bg-rose-50 border-none rounded-xl p-4 focus:outline-none focus:ring-2 focus:ring-rose-300 resize-none text-sm text-gray-700 placeholder-gray-400" placeholder="Yo deseo..."></textarea>
+                <button onclick="submitWish()" class="bg-rose-500 text-white py-3 rounded-xl font-semibold hover:bg-rose-600 transition flex items-center justify-center gap-2 shadow-md">
+                    Enviar Deseo 💌
+                </button>
+            </div>
+            
+            <div id="wish-confirmation" class="hidden text-sm text-rose-600 font-semibold mb-6 bg-rose-50 p-3 rounded-lg">
+                ¡Tu deseo ha sido guardado y enviado directo a mi corazón! ❤️
+            </div>
+            
+            <button onclick="nextScreen(4)" class="text-gray-400 underline text-sm hover:text-gray-600 font-medium">Volver a los Regalos</button>
+        </div>
+    </div>
+    
+    <!-- Pantalla 7: Mensaje -->
+    <div id="screen-message" class="screen flex-col items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-3xl shadow-xl w-full max-w-sm text-center relative overflow-hidden">
+            <div class="absolute -top-6 -right-6 text-8xl opacity-5">💌</div>
+            <h2 class="text-2xl font-bold text-rose-800 mb-6 relative z-10">Para ti...</h2>
+            <p class="text-sm text-gray-600 mb-8 leading-relaxed text-left relative z-10">
+                Eres la persona más increíble de mi vida. Cada día a tu lado es un regalo que atesoro inmensamente. Gracias por todo tu cariño, por tu paciencia y por hacer mi mundo mucho más brillante.
+                <br><br>
+                ¡Espero que disfrutes tu día tanto como yo disfruto estar contigo! Te amo muchísimo.
+            </p>
+            <button onclick="nextScreen(4)" class="w-full py-3 bg-rose-100 text-rose-700 rounded-xl font-semibold hover:bg-rose-200 transition relative z-10">Volver a los Regalos</button>
+        </div>
+    </div>
+
+    <script>
+        function nextScreen(id) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(typeof id === 'number' ? `screen-${id}` : id);
+            if(target) target.classList.add('active');
+        }
+
+        function showGift(type) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            if(type === 'photos') document.getElementById('screen-photos').classList.add('active');
+            if(type === 'wish') {
+                document.getElementById('screen-wish').classList.add('active');
+                document.getElementById('wish-input').value = '';
+                document.getElementById('wish-confirmation').classList.add('hidden');
+            }
+            if(type === 'message') document.getElementById('screen-message').classList.add('active');
+        }
+
+        function submitWish() {
+            const input = document.getElementById('wish-input');
+            if(input.value.trim() !== '') {
+                document.getElementById('wish-confirmation').classList.remove('hidden');
+                input.value = '';
+            }
+        }
+    </script>
+</body>
+</html>
